@@ -1,0 +1,22 @@
+div.introtext {
+    width:800px;
+    position:fixed;
+    top:10px;
+    left:10px;
+    border: 1px solid #999;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#filecontents { 
+    width:792px;
+    position:fixed;
+    top:202px;
+    left:12px;
+    border:double; 
+    overflow-y:scroll; 
+    height:400px; 
+} 
