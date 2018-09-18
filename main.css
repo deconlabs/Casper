@@ -1,6 +1,6 @@
 div.introtext {
     width:800px;
-    position:fixed;
+    position:relative;
     top:10px;
     left:10px;
     border: 1px solid #999;
@@ -13,7 +13,6 @@ body {
 
 #filecontents { 
     width:792px;
-    position:fixed;
     top:202px;
     left:12px;
     border:double; 

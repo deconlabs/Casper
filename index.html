@@ -8,13 +8,18 @@
     </head>
     <body> 
         <div class="introtext">
-            This webpage and GitHub repository are supplements to the paper "Incentive Analysis of Hybrid PoW/PoS Casper the Friendly Finality Gadget Using PRESTO". The buttons below can be used to produce the numerical results used to create Figures 3 and 4 in the paper. <br> Above all, the underlying code (which can be found at https://github.com/casper-paper/casper-paper.github.io) has been made publicly available to make the paper fully reproducible, and to aid researchers who wish to extend or modify the experiments.
+            This webpage and GitHub repository are supplements to the paper "Incentive Analysis of Hybrid PoW/PoS Casper the Friendly Finality Gadget Using PRESTO". The buttons below can be used to produce the numerical results used to create Figures 3 and 4 in the paper. 
+            <br> In particular, when clicking one of the buttons, the numerical experiment will be conducted <b><u>live</u>, in the browser</b>, using the programming code for the paper, which was ported from Java to JavaScript.
+            <br> Above all, the underlying JavaScript code (which can be found at https://github.com/casper-paper/casper-paper.github.io, or via "page source" in the browser) has been made publicly available to make the paper fully reproducible, and to aid researchers who wish to extend or modify the experiments.
+            <br>The most important file in the underlying code is Casper.js, which allows for sthe imulation of a censorship attack. Experiment.js details the specific the experiments conducted in the figures.
         </div> 
-        <button style="position:fixed; top: 140px; left:100px" onclick="doExperimentFigure3a()">Figure 3a</button> 
-        <button style="position:fixed; top: 140px; left:200px" onclick="doExperimentFigure3b()">Figure 3b</button> 
-        <button style="position:fixed; top: 170px; left:100px" onclick="doExperimentFigure4a()">Figure 4a</button> 
-        <button style="position:fixed; top: 170px; left:200px" onclick="doExperimentFigure4b()">Figure 4b</button> 
-        <div id="filecontents"></div>
+        <div style ="position:relative;">
+            <button style="position:absolute; top: 20px; left:100px" onclick="doExperimentFigure3a()">Figure 3a</button> 
+            <button style="position:absolute; top: 20px; left:200px" onclick="doExperimentFigure3b()">Figure 3b</button> 
+            <button style="position:absolute; top: 50px; left:100px" onclick="doExperimentFigure4a()">Figure 4a</button> 
+            <button style="position:absolute; top: 50px; left:200px" onclick="doExperimentFigure4b()">Figure 4b</button> 
+            <div id="filecontents" style="position:absolute; top: 80px" ></div>
+        </div>
     </body>
 </html>
 
