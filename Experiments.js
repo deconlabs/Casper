@@ -5,7 +5,6 @@ doExperimentFigure3a = function() {
     var h = 0.25;
     
     var text = "j,tau,h,D_normal,D_noncensored,D_censored";
-    // D: D=10000000, p/gamma: 1.0/21, 0.5/0.007, 0.3/0.00026, 0.2/0.00005, 0.1/0.000011, 0/0.0000022 
     var n = 2;
     var totalD = 100000;
     var baseDepositDependence = 0;
@@ -43,7 +42,6 @@ doExperimentFigure3b = function() {
     var h = 0.25;
     
     var text = "j,tau,h,D_normal,D_noncensored,D_censored";
-    // D: D=10000000, p/gamma: 1.0/21, 0.5/0.007, 0.3/0.00026, 0.2/0.00005, 0.1/0.000011, 0/0.0000022 
     var n = 2;
     var totalD = 100000;
     var baseDepositDependence = 1;
