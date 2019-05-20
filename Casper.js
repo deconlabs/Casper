@@ -11,7 +11,7 @@ class Casper {
         this.baseDepositDependence = baseDepositDependence;
 
         this.rewardFactor = this.baseInterestFactor/Math.pow(totalD, baseDepositDependence); 
-        this.depositScaleFactor = Casper.INITIAL_SCALE_FACTOR;
+        this.depositScaleFactor = Casper.INITIAL_SCALE_FACTOR; // 이게 무슨 문법이다냐
         this.prevDepositScaleFactor = this.depositScaleFactor;
 
         this.totalVoteUnscaled = 0;
@@ -57,7 +57,7 @@ class Casper {
         if(this.epoch == 1) return this.rewardFactor/2;
         var votePercentage = this.totalVoteUnscaled/this.getTotalDepositsUnscaled();
 		if(this.getESF() > 2) votePercentage = 0;
-        return votePercentage*this.rewardFactor/2;
+        return votePercentage*this.rewardFactor/2; // m * ro/2
     }
     
     getScaledDeposit(i) {
@@ -89,7 +89,8 @@ class Casper {
 		this.rewardFactor = this.baseInterestFactor/Math.pow(this.getTotalDepositsUnscaled() * this.prevDepositScaleFactor, this.baseDepositDependence) + this.basePenaltyFactor * (this.getESF()-2); 
 		if(this.getESF() >= this.exponentialTerm) this.rewardFactor += (Math.exp(this.getESF()-this.exponentialTerm) - 1) * this.basePenaltyFactor;
         
-		// update base deposits
+        // update base deposits
+    
 		this.totalVoteUnscaled = 0;
 		for(var i=0; i<this.numValidators; i++) {
 			if((i == 0) || (this.epoch > this.attackDuration)) {
@@ -111,7 +112,7 @@ class Casper {
         return (this.getScaledDeposit(idx)/Casper.INITIAL_SCALE_FACTOR)/this.validatorInitDeposits[idx] - 1;
     }
     
-    processEpochs(n) {
+    processEpochs(n) { // 이건 뭐하는 함수인지 모르겠네
         var deps = [];
         var z = this.numValidators - 1;
         for(var i=0;i<n;i++) {
