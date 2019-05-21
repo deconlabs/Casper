@@ -1,9 +1,9 @@
-doExperimentFigure3a = function() {
+doExperimentFigure3a = function () {
     var tau = 2000;
     var traceEpochStep = 100;
     var traceCounter = 0;
     var h = 0.25;
-    
+
     var text = "j,tau,h,D_normal,D_noncensored,D_censored";
     var n = 2;
     var totalD = 100000;
@@ -15,32 +15,32 @@ doExperimentFigure3a = function() {
     var casperAttack = new Casper(totalD, h, baseInterestFactor, basePenaltyFactor, baseDepositDependence, tau);
     var overtake = -1;
     var maxEpochs = 7002;
-    
-    for(var j=0;j<maxEpochs;j++)  {
+
+    for (var j = 0; j < maxEpochs; j++) {
         casperHonest.processEpoch();
         casperAttack.processEpoch();
-        if(overtake == -1 && (casperHonest.getScaledDeposit(0) < casperAttack.getScaledDeposit(0))) {
+        if (overtake == -1 && (casperHonest.getScaledDeposit(0) < casperAttack.getScaledDeposit(0))) {
             overtake = j;
             Dovertake = casperHonest.getScaledDeposit(0);
         }
-        if(j > traceCounter*traceEpochStep) {
+        if (j > traceCounter * traceEpochStep) {
             traceCounter++;
-            var atext = j+","+tau+","+h+","+casperHonest.getDepositChange(0)+","+casperAttack.getDepositChange(0)+","+casperAttack.getDepositChange(1);
+            var atext = j + "," + tau + "," + h + "," + casperHonest.getDepositChange(0) + "," + casperAttack.getDepositChange(0) + "," + casperAttack.getDepositChange(1);
             console.log(atext);
-            text += "\n"+atext;
+            text += "\n" + atext;
         }
     }
-    
-    var fileContents = document.getElementById('filecontents'); 
-    fileContents.innerText = text; 
+
+    var fileContents = document.getElementById('filecontents');
+    fileContents.innerText = text;
 }
 
-doExperimentFigure3b = function() {
+doExperimentFigure3b = function () {
     var tau = 2000;
     var traceEpochStep = 100;
     var traceCounter = 0;
     var h = 0.25;
-    
+
     var text = "j,tau,h,D_normal,D_noncensored,D_censored";
     var n = 2;
     var totalD = 100000;
@@ -52,36 +52,36 @@ doExperimentFigure3b = function() {
     var casperAttack = new Casper(totalD, h, baseInterestFactor, basePenaltyFactor, baseDepositDependence, tau);
     var overtake = -1;
     var maxEpochs = 7002;
-    
-    for(var j=0;j<maxEpochs;j++)  {
+
+    for (var j = 0; j < maxEpochs; j++) {
         casperHonest.processEpoch();
         casperAttack.processEpoch();
-        if(overtake == -1 && (casperHonest.getScaledDeposit(0) < casperAttack.getScaledDeposit(0))) {
+        if (overtake == -1 && (casperHonest.getScaledDeposit(0) < casperAttack.getScaledDeposit(0))) {
             overtake = j;
             Dovertake = casperHonest.getScaledDeposit(0);
         }
-        if(j > traceCounter*traceEpochStep) {
+        if (j > traceCounter * traceEpochStep) {
             traceCounter++;
-            var atext = j+","+tau+","+h+","+casperHonest.getDepositChange(0)+","+casperAttack.getDepositChange(0)+","+casperAttack.getDepositChange(1);
+            var atext = j + "," + tau + "," + h + "," + casperHonest.getDepositChange(0) + "," + casperAttack.getDepositChange(0) + "," + casperAttack.getDepositChange(1);
             console.log(atext);
-            text += "\n"+atext;
+            text += "\n" + atext;
         }
     }
-    
-    var fileContents = document.getElementById('filecontents'); 
-    fileContents.innerText = text; 
+
+    var fileContents = document.getElementById('filecontents');
+    fileContents.innerText = text;
 }
 
-doExperimentFigure4a = function() {
+doExperimentFigure4a = function () {
     var h = 0.00001;
     var startH = 0.3;
     var stepH = 0.001;
     var endH = 1.0;
     var baseMaxEpochs = 100000;
-    
+
     var text = "h,first_finalization_epoch";
 
-    for(var h=startH;h<endH;h+=stepH) {
+    for (var h = startH; h < endH; h += stepH) {
         var n = 2;
         var eachValidatorD = 10000000;
         var baseInterestFactor = 0.007;
@@ -90,32 +90,32 @@ doExperimentFigure4a = function() {
 
         var casper = new Casper(eachValidatorD, h, baseInterestFactor, basePenaltyFactor, baseDepositDependence, maxEpochs, 0);
         var maxEpochs = baseMaxEpochs;
-        for(var j=0;j<maxEpochs;j++)  {
+        for (var j = 0; j < maxEpochs; j++) {
             casper.processEpoch();
-            if(casper.lastFinalizedEpoch > -1) {
+            if (casper.lastFinalizedEpoch > -1) {
                 break;
             }
         }
 
-        var atext = h+","+casper.getFinalizationEpoch();
+        var atext = h + "," + casper.getFinalizationEpoch();
         console.log(atext);
-        text += "\n"+atext;
+        text += "\n" + atext;
     }
-    
-    var fileContents = document.getElementById('filecontents'); 
-    fileContents.innerText = text; 
+
+    var fileContents = document.getElementById('filecontents');
+    fileContents.innerText = text;
 }
 
-doExperimentFigure4b = function() {
+doExperimentFigure4b = function () {
     var h = 0.00001;
     var startH = 0.3;
     var stepH = 0.001;
     var endH = 1.0;
     var baseMaxEpochs = 100000;
-    
+
     var text = "h,first_finalization_epoch";
 
-    for(var h=startH;h<endH;h+=stepH) {
+    for (var h = startH; h < endH; h += stepH) {
         var n = 2;
         var eachValidatorD = 10000000;
         var baseInterestFactor = 0.007;
@@ -124,18 +124,18 @@ doExperimentFigure4b = function() {
 
         var casper = new Casper(eachValidatorD, h, baseInterestFactor, basePenaltyFactor, baseDepositDependence, maxEpochs, 1000);
         var maxEpochs = baseMaxEpochs;
-        for(var j=0;j<maxEpochs;j++)  {
+        for (var j = 0; j < maxEpochs; j++) {
             casper.processEpoch();
-            if(casper.lastFinalizedEpoch > -1) {
+            if (casper.lastFinalizedEpoch > -1) {
                 break;
             }
         }
 
-        var atext = h+","+casper.getFinalizationEpoch();
+        var atext = h + "," + casper.getFinalizationEpoch();
         console.log(atext);
-        text += "\n"+atext;
+        text += "\n" + atext;
     }
-    
-    var fileContents = document.getElementById('filecontents'); 
-    fileContents.innerText = text; 
+
+    var fileContents = document.getElementById('filecontents');
+    fileContents.innerText = text;
 }
