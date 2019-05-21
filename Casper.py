@@ -59,10 +59,9 @@ class Casper:
     def getCollectiveReward(self, ):
         # relevant for the first epoch, as we are assuming that we start in something close to steady-state
         if (self.epoch == 1):
-            return self.rewardFactor / 2 #왜 epoch = 1 이면 투표율 고려안하지??
+            return self.rewardFactor / 2  # 왜 epoch = 1 이면 투표율 고려안하지??
 
         votePercentage = self.totalVoteUnscaled / self.getTotalDepositsUnscaled()
-
 
         if (self.getESF() > 2):
             votePercentage = 0
@@ -98,8 +97,7 @@ class Casper:
         self.rewardFactor = self.baseInterestFactor / math.pow(self.getTotalDepositsUnscaled(
         ) * self.prevDepositScaleFactor, self.baseDepositDependence) + self.basePenaltyFactor * (self.getESF() - 2)
         if (self.getESF() >= self.exponentialTerm):
-            self.rewardFactor += (math.exp(self.getESF() -
-                                           self.exponentialTerm) - 1) * self.basePenaltyFactor
+            self.rewardFactor += (math.exp(self.getESF() - self.exponentialTerm) - 1) * self.basePenaltyFactor
 
         # update base deposits
         self.totalVoteUnscaled = 0
@@ -120,7 +118,6 @@ class Casper:
 
                 self.lastJustifiedEpoch = self.epoch
 
-        return self.depositScaleFactor
 
     def getDepositChange(self, idx):
         return (self.getScaledDeposit(idx) / self.INITIAL_SCALE_FACTOR) / self.validatorInitDeposits[idx] - 1
