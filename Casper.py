@@ -10,6 +10,7 @@ class Casper:
         self.validatorPrevDeposits = [0, 0]
         self.validatorDeposits = [0, 0]
         #  We consider two validators, one is attacked, other is not. -> 한명은 censorship 당해서 투표 안함 처리되고 한명은 투표한걸로 처리
+        #0 = attacker, 1 = victim
         self.numValidators = 2
 
         self.baseInterestFactor = baseInterestFactor

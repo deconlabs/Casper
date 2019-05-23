@@ -30,6 +30,8 @@ def doExperimentFigure3a():
     maxEpochs = 7002
 
     deposit_change = []
+    reward_factor = []
+
     for j in range(0, maxEpochs):
 
         casperHonest.processEpoch()
@@ -44,19 +46,27 @@ def doExperimentFigure3a():
             attack_deposit_change = casperAttack.getDepositChange(0)
             deposit_change.append((honest_deposit_change, attack_deposit_change))
 
-            atext = ",".join(map(str, [j, tau, h,honest_deposit_change ,attack_deposit_change , casperAttack.getDepositChange(1)]))
+            atext = ",".join(map(str, [j, tau, h,honest_deposit_change ,casperHonest.getDepositChange(1) , casperAttack.getDepositChange(0),casperAttack.getDepositChange(1)]))
+            # 이상하다... attacker 의 deposit 은 (-) 가 아닌데, victim 의 deposit 은 (-)이다..
             print(atext)
+
             text += "\n" + atext
+        reward_factor.append((casperHonest.rewardFactor,casperAttack.rewardFactor))
 
+    reward_factor = np.array(reward_factor)
+    plt.plot(reward_factor[:,0] , color = 'r', )
+    # plt.plot(reward_factor[:, 1], color='b', )
+    plt.legend(['honest_reward_factor', 'attack_reward_factor'])
+    plt.savefig("reward factor_3a")
 
-    deposit_change = np.array(deposit_change)
-    plt.plot(deposit_change[:,0],color='r')
-    plt.plot(deposit_change[:,1],color='b')
-    plt.xlabel("epoch i")
-    plt.ylabel("Reserve Received ")
-    plt.title(" p = 0 ")
-    plt.savefig("Fig3a")
-    plt.close()
+    # deposit_change = np.array(deposit_change)
+    # plt.plot(deposit_change[:,0],color='r')
+    # plt.plot(deposit_change[:,1],color='b')
+    # plt.xlabel("epoch i")
+    # plt.ylabel("Reserve Received ")
+    # plt.title(" p = 0 ")
+    # plt.savefig("Fig3a")
+    # plt.close()
     # fileContents = document.getElementById('filecontents')
     # fileContents.innerText = text
 
@@ -82,6 +92,8 @@ def doExperimentFigure3b():
     maxEpochs = 7002
 
     deposit_change = []
+    reward_factor = []
+
     for j in range(0, maxEpochs):
 
         casperHonest.processEpoch()
@@ -100,15 +112,21 @@ def doExperimentFigure3b():
                 map(str, [j, tau, h, honest_deposit_change, attack_deposit_change, casperAttack.getDepositChange(1)]))
             print(atext)
             text += "\n" + atext
+        reward_factor.append((casperHonest.rewardFactor, casperAttack.rewardFactor))
 
-    deposit_change = np.array(deposit_change)
-    plt.plot(deposit_change[:, 0],color='r')
-    plt.plot(deposit_change[:, 1],color='b')
-    plt.xlabel("epoch i")
-    plt.ylabel("Reserve Received ")
-    plt.title(" p = 1 ")
-    plt.savefig("Fig3b")
-    plt.close()
+    reward_factor = np.array(reward_factor)
+    plt.plot(reward_factor[:,0] , color = 'r', )
+    # plt.plot(reward_factor[:, 1], color='b', )
+    plt.legend(['honest_reward_factor', 'attack_reward_factor'])
+    plt.savefig("reward factor_3b")
+    # deposit_change = np.array(deposit_change)
+    # plt.plot(deposit_change[:, 0],color='r')
+    # plt.plot(deposit_change[:, 1],color='b')
+    # plt.xlabel("epoch i")
+    # plt.ylabel("Reserve Received ")
+    # plt.title(" p = 1 ")
+    # plt.savefig("Fig3b")
+    # plt.close()
     # fileContents = document.getElementById('filecontents')
     # fileContents.innerText = text
 
@@ -126,6 +144,8 @@ def doExperimentFigure4a():
     text = "h,first_finalization_epoch"
     h_list = []
     FinalizationEpoch = []
+
+    reward_factor = []
 
     for h in np.arange(startH, endH, stepH):
 
@@ -147,16 +167,20 @@ def doExperimentFigure4a():
         FinalizationEpoch.append(final_epoch)
         h_list.append(h)
         atext = str(h) + "," + str(final_epoch)
-        print(atext)
+        # print(atext)
+        reward_factor.append(casper.rewardFactor)
+        # print("reward factor : ", casper.rewardFactor)
+
         text += "\n" + atext
 
-    h_list = np.array(h_list)
-    plt.plot((1 - h_list)[::-1], np.array(FinalizationEpoch))
-    plt.xlabel("alpha")
-    plt.ylabel("first finalization epoch")
-    plt.title("Benchmark setting")
-    plt.ylim(-1000, 10000)
-    plt.savefig("Fig4a")
+
+    # h_list = np.array(h_list)
+    # plt.plot((1 - h_list)[::-1], np.array(FinalizationEpoch))
+    # plt.xlabel("alpha")
+    # plt.ylabel("first finalization epoch")
+    # plt.title("Benchmark setting")
+    # plt.ylim(-1000, 10000)
+    # plt.savefig("Fig4a")
 
     # fileContents = document.getElementById('filecontents')
     # fileContents.innerText = text
@@ -206,7 +230,7 @@ def doExperimentFigure4b():
     plt.savefig("Fig4b")
 
 
-doExperimentFigure3a()
+# doExperimentFigure3a()
 doExperimentFigure3b()
 # doExperimentFigure4a()
 # doExperimentFigure4b()
